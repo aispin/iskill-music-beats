@@ -100,13 +100,14 @@ window.PROMO = {
       steps: {
         eyebrow: "上手",
         title: "三步跑起来",
-        sub: "",
+        sub: "命令由 agent 跑，你只说要什么、看结果。",
         items: [
           { title: "交给 AI 装", desc: "把这句话粘进对话框，agent 会自己拉代码、读文档，再告诉你用法。", codeKey: "install" },
-          { title: "确认 librosa", desc: "librosa 与 soundfile 已装在 managed venv；缺了就用这条补上。", codeName: "shell", code: "/Users/lv/.workbuddy/binaries/python/envs/default/bin/pip install -q librosa soundfile" },
-          { title: "分析一条 BGM", desc: "只分析前 60s 更快，同时生成节拍确认音轨。", codeName: "shell", code: "/Users/lv/.workbuddy/binaries/python/envs/default/bin/python scripts/beat_detect.py bgm.m4a --end 60 --click bgm.click.wav" }
+          { title: "说要卡点用", desc: "只分析前 60 秒更快（循环铺底够用）；librosa 依赖它会自己确认。", codeName: "prompt", code: "分析这首 BGM 的 BPM 和节拍点，把候选转场点给我，卡点用。" },
+          { title: "听一遍节拍音轨", desc: "beats.json 是给下游剪辑消费的；要人工核对，就让它再出一条节拍音轨，你跟着听一遍。" }
         ]
       },
+
 
       faq: {
         eyebrow: "问答",
@@ -211,13 +212,14 @@ window.PROMO = {
       steps: {
         eyebrow: "Get started",
         title: "Up and running in three steps",
-        sub: "",
+        sub: "The agent runs the commands. You say what you want and check the result.",
         items: [
           { title: "Let your agent install it", desc: "Paste the line into the chat — it clones the repo, reads the docs, and tells you how to use it.", codeKey: "install" },
-          { title: "Confirm librosa", desc: "librosa and soundfile are already in the managed venv; if missing, run this.", codeName: "shell", code: "/Users/lv/.workbuddy/binaries/python/envs/default/bin/pip install -q librosa soundfile" },
-          { title: "Analyse a BGM", desc: "Only the first 60s is much faster, and generate a confirmation click track at the same time.", codeName: "shell", code: "/Users/lv/.workbuddy/binaries/python/envs/default/bin/python scripts/beat_detect.py bgm.m4a --end 60 --click bgm.click.wav" }
+          { title: "Say it's for beat-matching", desc: "Analyzing just the first 60s is much faster and enough for a loop. It checks librosa for you.", codeName: "prompt", code: "Analyze this BGM's BPM and beats, and give me candidate transition points for beat-matched editing." },
+          { title: "Listen to the click track", desc: "beats.json is meant for the clipper downstream. To verify by ear, ask for a click track and tap along once." }
         ]
       },
+
 
       faq: {
         eyebrow: "FAQ",
