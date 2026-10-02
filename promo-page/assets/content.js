@@ -36,16 +36,19 @@ window.PROMO = {
         meta2: "输出机器可读 JSON",
         meta3: "MIT 许可"
       },
-      terminal: {
-        title: "zsh — iskill-music-beats",
-        lines: [
-          [{ t: "$ ", c: "p" }, { t: "python scripts/beat_detect.py bgm.m4a --end 60 --click bgm.click.wav", c: "k" }],
-          [{ t: "[beat_detect] 节拍确认音轨 → ", c: "s" }, { t: "bgm.click.wav", c: "s" }],
-          [{ t: '{"file": "bgm.m4a", "bpm": 128.0, "beat_interval": 0.469, "note": ""}', c: "s" }],
-          [{ t: "[beat_detect] 节拍 ", c: "s" }, { t: "128", c: "k" }, { t: " 个 | 强节拍 ", c: "s" }, { t: "61", c: "k" }, { t: " 个 | 候选转场点 ", c: "s" }, { t: "24", c: "k" }, { t: " 个", c: "s" }],
-          [{ t: "[beat_detect] JSON → ", c: "s" }, { t: "bgm.beats.json", c: "s" }]
+      chat: {
+        title: "AI Agent · 对话现场",
+        status: "在线",
+        userLabel: "你",
+        agentLabel: "AI",
+        messages: [
+          { role: "user", text: "分析这首 BGM 的 BPM 和节拍点，卡点用" },
+          { role: "agent", text: "librosa 本地跑，输出 beats.json：节拍时间轴 + 强度 + 候选转场点，下游剪辑直接消费。", tag: "BPM 96 · 132 拍" },
+          { role: "user", text: "我想自己听一遍对不对" },
+          { role: "agent", text: "再出一条节拍确认音轨（click）：强节拍高频、弱节拍低频，你跟着听一遍就知道准不准。" }
         ]
       },
+
 
       stats: [
         { value: "80–160 BPM", label: "librosa 最准区间", note: "常规流行 / 电子曲；氛围曲会退化并写进 note" },
@@ -148,16 +151,19 @@ window.PROMO = {
         meta2: "Machine-readable JSON",
         meta3: "MIT licensed"
       },
-      terminal: {
-        title: "zsh — iskill-music-beats",
-        lines: [
-          [{ t: "$ ", c: "p" }, { t: "python scripts/beat_detect.py bgm.m4a --end 60 --click bgm.click.wav", c: "k" }],
-          [{ t: "[beat_detect] click track → ", c: "s" }, { t: "bgm.click.wav", c: "s" }],
-          [{ t: '{"file": "bgm.m4a", "bpm": 128.0, "beat_interval": 0.469, "note": ""}', c: "s" }],
-          [{ t: "[beat_detect] beats ", c: "s" }, { t: "128", c: "k" }, { t: " | strong ", c: "s" }, { t: "61", c: "k" }, { t: " | cut candidates ", c: "s" }, { t: "24", c: "k" }],
-          [{ t: "[beat_detect] JSON → ", c: "s" }, { t: "bgm.beats.json", c: "s" }]
+      chat: {
+        title: "AI Agent · live session",
+        status: "online",
+        userLabel: "You",
+        agentLabel: "AI",
+        messages: [
+          { role: "user", text: "Analyze this BGM's BPM and beats for beat-matched editing" },
+          { role: "agent", text: "librosa runs locally and emits beats.json: beat timeline, strength, and candidate transition points the clipper can consume directly.", tag: "96 BPM · 132 beats" },
+          { role: "user", text: "I want to hear whether it's right" },
+          { role: "agent", text: "Then I'll also render a click track — high tone on strong beats, low on weak ones. Tap along once and you'll know." }
         ]
       },
+
 
       stats: [
         { value: "80–160 BPM", label: "librosa's sweet spot", note: "pop / electronic; ambient tracks degrade and say so in note" },
