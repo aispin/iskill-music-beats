@@ -74,3 +74,15 @@ $PY scripts/beat_detect.py bgm.m4a --json beats.json --top 16
 - `--end` 截断分析大幅提速；但**段边界换算要用绝对时间**——脚本输出的 t 已经加回 `analyzed_from` 偏移，直接用，不要再减
 - ffmpeg 提取的 BGM（m4a/mp3/wav）和视频文件（取音轨）都能直接喂
 - 22050Hz 单声道分析足够，不要改高采样率拖慢速度
+
+## 依赖同步
+
+本仓库 `promo-page/assets/{app.js,style.css,icons.js}` 是 [iskill-promo-page](https://github.com/aispin/iskill-promo-page)
+模板引擎的 vendored 副本（锁定版本见 `package.json` 的 `iskillDeps`），**不要手改**——
+去真源仓库改并升 `@iskill-version`，再用 iskill-dep-sync 同步回来（本机无该工具时按下面自举）：
+
+```bash
+T="$HOME/.workbuddy/skills/iskill-dep-sync/scripts/skill-deps.mjs"
+[ -f "$T" ] || { TMP="$(mktemp -d)"; curl -fsSL "https://raw.githubusercontent.com/aispin/iskill-dep-sync/HEAD/scripts/skill-deps.mjs" -o "$TMP/skill-deps.mjs"; T="$TMP/skill-deps.mjs"; }
+node "$T" check "$(pwd)"     # 漂移检测；node "$T" sync "$(pwd)" 恢复/升级；node "$T" env "$(pwd)" 冷启动自检
+```
